@@ -203,9 +203,6 @@ def writeInFile_start(user_id,peer_id,permission):
     permission: уровень доступа (права) пользователя
     """
 
-    with open('userInfo.json','r') as file:
-        dataUser = json.load(file)
-
     if user_id==170852963:
         user['user_id']=user_id
         user['peer_id']=peer_id
@@ -219,9 +216,16 @@ def writeInFile_start(user_id,peer_id,permission):
         user['state']='start'
         user['ban']=False
         user['permission']=permission
+
+    with open('Digital-helper-Vector\\userInfo.json','w') as file:
+        file.write(json.dumps(userInfo_val))
+
+
+    with open('Digital-helper-Vector\\userInfo.json','r') as file:
+        dataUser = json.load(file)
     
     dataUser['user_id'].append(user)
-    with open('userInfo.json','w+') as file:
+    with open('Digital-helper-Vector\\userInfo.json','w+') as file:
         file.write(json.dumps(dataUser))
 
 
@@ -241,7 +245,7 @@ def sPrintLog(event:VkBotMessageEvent, save:bool, pathFile:str):
     if (long['messages']['count']>0):
         pass
 
-    with open('userInfo.json','r') as file:
+    with open('Digital-helper-Vector\\userInfo.json','r') as file:
         dataUser_r = json.load(file)
 
 
@@ -260,7 +264,7 @@ def sPrintLog(event:VkBotMessageEvent, save:bool, pathFile:str):
         print(f'[LOG] [{datetime.datetime.now()}]: UserID: {event.object["user_id"]} | Scenary: {dataUser_r["user_id"][userIndex]["state"]} | Event: {event.type} | Payload: {event.object["payload"]}')
 
     if (save):
-        with open(pathFile,'a',encoding='utf-8') as file:
+        with open('Digital-helper-Vector\\BotLog.txt','a',encoding='utf-8') as file:
             if event.type==VkBotEventType.MESSAGE_NEW:
                 file.writelines(f'[LOG] [{datetime.datetime.now()}]: UserID: {event.message["from_id"]} | Scenary: {dataUser_r["user_id"][userIndex]["state"]} | Event: {event.type} | Text: {event.message["text"]}\n')
             elif event.type==VkBotEventType.MESSAGE_EVENT:
