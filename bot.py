@@ -15,9 +15,6 @@ def main():
     print('Launch scenary: ', main.__name__)
 
     for event in botLib.bot_longpoll.listen():
-
-        if event.type != VkBotEventType.MESSAGE_TYPING_STATE:
-            botLib.sPrintLog(event,True)
         
         if event.type==VkBotEventType.MESSAGE_NEW and event.from_user and event.message['text']=='Начать':
             botLib.writeInFile_start(event.message['from_id'],event.message['from_id'],'user')
@@ -29,6 +26,7 @@ def main():
                 'message': 'Сейчас идет тестирование кейса [Хакатон: Лидеры Цифровой трансформации].\nЕсли вы хотите повзаимодействовать с ботом, то можете отправить ему любой текст или слово "Старт".\nСпасибо за вниманиие!'
 
                 })
+
         elif event.type==VkBotEventType.MESSAGE_NEW and event.from_user and event.message['text']=='Старт':
             # botLib.writeInFile(start.__name__,event.message['from_id'])
             botLib.session.method('messages.send',{
@@ -37,7 +35,7 @@ def main():
                 'random_id': random.randint(1,1000)+time.localtime().tm_sec,
                 'message': 'Начало сценария'
 
-                })
+                })  
                 
         elif event.type==VkBotEventType.MESSAGE_NEW and event.from_user:
             botLib.session.method('messages.send',{
@@ -59,7 +57,9 @@ def main():
                     'message': f'Вы отправили сообщение: {message}'
 
                     })
-            
+        
+        if event.type != VkBotEventType.MESSAGE_TYPING_STATE:
+            botLib.sPrintLog(event,True)
 
 
 
