@@ -11,7 +11,7 @@ def load_json(file):
 
 
 # Store JSON data
-response_data = load_json("bot.json")
+response_data = load_json("Digital-helper-Vector\\bot.json")
 
 
 def get_response(input_string):
@@ -59,6 +59,6 @@ def get_response(input_string):
     return random_responses.random_string()
 
 
-while True:
-    user_input = input("You: ")
-    print("Bot:", get_response(user_input))
+# while True:
+#     user_input = input("You: ")
+#     print("Bot:", get_response(user_input))

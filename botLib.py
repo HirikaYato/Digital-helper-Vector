@@ -272,7 +272,7 @@ def sPrintLog(event:VkBotMessageEvent, save:bool):
 
 
 #Объект клавиатуры, сценария "Старт"
-keyboard_start=VkKeyboard() #Callback_button - для перехода между сценариями; usual_button - для взаимодействия внутри данного сценария
+keyboard_start=VkKeyboard(inline=True) #Callback_button - для перехода между сценариями; usual_button - для взаимодействия внутри данного сценария
 #Объект для составления и обработки запросов
 request_pool_api=VkRequestsPool(session)
 #Объект, характеризующий результат запроса
@@ -280,5 +280,11 @@ pool_result=RequestResult()
 #Объект для загрузки данных
 upload=VkUpload(session)
 
+
+keyboard_start.add_callback_button('Задать вопрос',VkKeyboardColor.SECONDARY,['question'])
+keyboard_start.add_line()
+keyboard_start.add_callback_button('Просмотреть указы',VkKeyboardColor.SECONDARY,['decree'])
+keyboard_start.add_line()
+keyboard_start.add_callback_button('Создать запрос/обращение в администрацию',VkKeyboardColor.SECONDARY,['appeal'])
 
 

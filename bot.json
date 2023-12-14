@@ -1,13 +1,13 @@
 [
   {
     "response_type": "greeting",
-    "user_input": ["hello", "hi", "hey"],
-    "bot_response": "ЗАлупа 1",
+    "user_input": ["привет","хай","здравствуйте","здравствуй"],
+    "bot_response": "Приветствую вас!\nЧто вы желаете выполнить?",
     "required_words": []
   },
   {
     "response_type": "greeting",
-    "user_input": ["see you", "goodbye", "bye"],
+    "user_input": ["see you", "goodbye", "bye","Пока","Давай"],
     "bot_response": "See you later!",
     "required_words": []
   },
