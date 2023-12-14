@@ -20,7 +20,7 @@
   {
     "response_type": "question",
     "user_input": ["how", "to", "learn", "code", "coding", "apps"],
-    "bot_response": "Start by typing: 'How to learn coding' on Google.",
+    "bot_response": "Start by typing: 'How to learn coding' on Google.'",
     "required_words": ["learn", "code"]
   },
   {
