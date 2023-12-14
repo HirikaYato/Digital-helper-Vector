@@ -2,7 +2,7 @@
   {
     "response_type": "greeting",
     "user_input": ["hello", "hi", "hey"],
-    "bot_response": "Hey there!",
+    "bot_response": "ЗАлупа 1",
     "required_words": []
   },
   {
@@ -34,5 +34,11 @@
     "user_input": ["how", "are", "you"],
     "bot_response": "I'm great! Thanks for asking.",
     "required_words": ["how", "are", "you"]
+  },
+  {
+    "response_type": "question",
+    "user_input": ["ia", "ru", "za"],
+    "bot_response": "zazazazaza",
+    "required_words": ["ia", "ru", "za"]
   }
 ]

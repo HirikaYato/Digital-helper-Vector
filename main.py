@@ -5,7 +5,7 @@ import random_responses
 
 # Load JSON data
 def load_json(file):
-    with open(file) as bot_responses:
+    with open(file, encoding='utf-8') as bot_responses:
         print(f"Loaded '{file}' successfully!")
         return json.load(bot_responses)
 

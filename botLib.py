@@ -86,7 +86,7 @@ def unBanUser(userID:int):
         file.write(json.dumps(dataUser))
         print(f'[LOG] [{datetime.datetime.now()}] User: {userID} was unban')
 
-                   
+
 
 def checkUserOnBan(userID:int):
     """
