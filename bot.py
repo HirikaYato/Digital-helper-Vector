@@ -12,6 +12,9 @@ from vk_api.requests_pool import VkRequestsPool,RequestResult
 
 
 def question(event:VkBotMessageEvent):
+
+    #Убрать костыль с проверкой на [payload]=='question'. Это было сделано для теста
+
     if event.type==VkBotEventType.MESSAGE_EVENT and event.from_user and event.object['payload']=='question':
        
         botLib.session.method('messages.send',{
