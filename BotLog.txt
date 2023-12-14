@@ -1,3 +1,0 @@
-[LOG] [2023-12-13 18:36:39.263886]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Начать
-[LOG] [2023-12-13 19:08:22.248658]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: [club223836799|Vector] Начать
-[LOG] [2023-12-13 19:29:43.932430]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: [club223836799|Vector] Начать
