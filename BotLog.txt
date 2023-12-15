@@ -25,3 +25,8 @@
 [LOG] [2023-12-15 02:00:15.408598]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет
 [LOG] [2023-12-15 02:02:13.298167]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет
 [LOG] [2023-12-15 02:04:00.976230]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет
+[LOG] [2023-12-15 20:22:55.262342]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Начать
+[LOG] [2023-12-15 20:23:07.451067]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет!)
+[LOG] [2023-12-15 20:26:25.601210]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет
+[LOG] [2023-12-15 20:37:09.299178]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Хай
+[LOG] [2023-12-15 20:38:03.267080]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет

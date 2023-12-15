@@ -15,7 +15,7 @@ def question(event:VkBotMessageEvent):
 
     #Убрать костыль с проверкой на [payload]=='question'. Это было сделано для теста
 
-    if event.type==VkBotEventType.MESSAGE_EVENT and event.from_user and event.object['payload']=='question':
+    if event.type==VkBotEventType.MESSAGE_EVENT and event.object['payload'][0]=='question':
        
         botLib.session.method('messages.send',{
                     'user_id': event.object['user_id'],
@@ -122,7 +122,7 @@ def main():
                     })
         
 
-        elif event.type==VkBotEventType.MESSAGE_EVENT and event.from_user and event.object['payload']=='question':
+        elif event.type==VkBotEventType.MESSAGE_EVENT and event.object['payload'][0]=='question':
             botLib.writeInFile(question.__name__,event.object['user_id'])
             botLib.session.method('messages.sendMessageEventAnswer',{
                     'event_id':event.object['event_id'],
@@ -131,7 +131,7 @@ def main():
                 })
             question(event)
 
-        elif event.type==VkBotEventType.MESSAGE_EVENT and event.from_user and event.object['payload']=='decree':
+        elif event.type==VkBotEventType.MESSAGE_EVENT and event.object['payload'][0]=='decree':
             botLib.writeInFile(decree.__name__,event.object['user_id'])
             botLib.session.method('messages.sendMessageEventAnswer',{
                     'event_id':event.object['event_id'],
@@ -139,7 +139,7 @@ def main():
                     'peer_id':event.object['peer_id']
                 })
             decree(event)
-        elif event.type==VkBotEventType.MESSAGE_EVENT and event.from_user and event.object['payload']=='appeal':
+        elif event.type==VkBotEventType.MESSAGE_EVENT and event.object['payload'][0]=='appeal':
             botLib.writeInFile(appeal.__name__,event.object['user_id'])
             botLib.session.method('messages.sendMessageEventAnswer',{
                     'event_id':event.object['event_id'],

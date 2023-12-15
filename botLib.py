@@ -8,7 +8,7 @@ import json
 
 
 #Инициализация сессии бота при помощи токена
-session=vk_api.VkApi(token='vk1.a.J1CxR4mz9XUKfETs0-qhRS9_UGJz-x8oMdKl23N3Yv4lDJAll002LYB6EKyTyfW5ezqsOtQvuvL7Wz3-brag94-MjcSItUWo-7hkQb6mQLE2krcgGa7BZ8P8SK1W-MY7cKWzTkvnTjhKsu6bMfhllatklo8bbuKFVVafXAHPVcb_c0hxfaiYDqET-F3RO66VUyUYim-803epwYH2kDAZZQ')
+session=vk_api.VkApi(token='vk1.a.imTYRsYzGEhvlt-qnNCAONaLGobJibG2aL1v7GqUmsprrm1nNLQFrsYl17jnCNLAWVAIX1UBNf5HVV7IVaWKgXBt9IpSzoua7p1yku-LNMHoy7FHWKJUKxX6FqLlhi6sEda7wHSqTae0Lkf9qgKp68jBYE-YFDdfT8uprtOADnI2FqEV7jDtVyf9kiqLYdSQQu7NHOoG_OIixuczP3g6dQ')
 #Создание объекта, для обработки событий от сервера
 bot_longpoll=VkBotLongPoll(session,'223836799',10)
 
