@@ -283,8 +283,6 @@ upload=VkUpload(session)
 
 keyboard_start.add_callback_button('Задать вопрос',VkKeyboardColor.SECONDARY,['question'])
 keyboard_start.add_line()
-keyboard_start.add_callback_button('Просмотреть указы',VkKeyboardColor.SECONDARY,['decree'])
-keyboard_start.add_line()
-keyboard_start.add_callback_button('Создать запрос/обращение в администрацию',VkKeyboardColor.SECONDARY,['appeal'])
+keyboard_start.add_openlink_button('Просмотреть указы','https://www.xn----7sbab7amcgekn3b5j.xn--p1ai/administratsiya-mo/postanovleniya-i-rasporyazheniya-glavy-mr/',['decree'])
 
 

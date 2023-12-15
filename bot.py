@@ -36,12 +36,14 @@ def question(event:VkBotMessageEvent):
                 
                 if (message!=None or message!=' '):
                     mess=events.message['text']
+                    ansewer=get_response(mess.lower())
+                    
 
                     botLib.session.method('messages.send',{
 
                         'user_id': events.message['from_id'],
                         'random_id': random.randint(6,1000)+time.localtime().tm_sec,
-                        'message': get_response(mess.lower())
+                        'message': ansewer[:len(ansewer)-2]
 
                         })
 
@@ -59,12 +61,13 @@ def question(event:VkBotMessageEvent):
                 
                 if (message!=None or message!=' '):
                     mess=events.message['text']
+                    ansewer=get_response(mess.lower())
 
                     botLib.session.method('messages.send',{
 
                         'user_id': events.message['from_id'],
                         'random_id': random.randint(8,1000)+time.localtime().tm_sec,
-                        'message': get_response(mess.lower())
+                        'message': ansewer[:len(ansewer)-2]
 
                         })
 
@@ -111,13 +114,14 @@ def main():
             
             if (message!=None or message!=' '):
                 mess=event.message['text']
+                ansewer=get_response(mess.lower())
 
                 botLib.session.method('messages.send',{
 
                     'user_id': event.message['from_id'],
                     'random_id': random.randint(3,1000)+time.localtime().tm_sec,
                     'keyboard': botLib.keyboard_start.get_keyboard(),
-                    'message': get_response(mess.lower())
+                    'message': ansewer[:len(ansewer)-2]
 
                     })
         
