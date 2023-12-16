@@ -11,7 +11,7 @@ def load_json(file):
 
 
 # Store JSON data
-response_data = load_json("Digital-helper-Vector\\bot.json")
+response_data = load_json("bot.json")
 
 
 def get_response(input_string):

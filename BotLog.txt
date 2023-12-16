@@ -37,3 +37,30 @@
 [LOG] [2023-12-15 21:20:15.901652]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет
 [LOG] [2023-12-15 21:20:21.280374]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Добрый день
 [LOG] [2023-12-15 21:20:35.136822]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Добрый день!) Хочу кое что узнать у вас
+[LOG] [2023-12-15 22:06:58.198458]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: see you
+[LOG] [2023-12-16 09:46:28.457050]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Начать
+[LOG] [2023-12-16 09:46:37.651784]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Начать
+[LOG] [2023-12-16 09:47:16.353091]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Начать
+[LOG] [2023-12-16 09:48:31.627198]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: а
+[LOG] [2023-12-16 09:50:07.561329]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Ну как ты?
+[LOG] [2023-12-16 09:50:25.265380]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет!)
+[LOG] [2023-12-16 09:50:52.067470]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет!
+[LOG] [2023-12-16 09:52:27.023183]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет!
+[LOG] [2023-12-16 09:59:06.153438]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Хай
+[LOG] [2023-12-16 09:59:27.558619]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Ага
+[LOG] [2023-12-16 10:01:13.479717]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Как дела?
+[LOG] [2023-12-16 10:01:53.694722]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Как дела?
+[LOG] [2023-12-16 10:03:52.765010]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: как живешь
+[LOG] [2023-12-16 10:04:22.829007]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Приятно познакомиться
+[LOG] [2023-12-16 10:05:14.079742]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: как дела
+[LOG] [2023-12-16 10:05:51.401122]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: как ты
+[LOG] [2023-12-16 10:10:33.850394]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Добрый вечер
+[LOG] [2023-12-16 10:10:45.043882]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Доброе утро
+[LOG] [2023-12-16 10:10:54.265637]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Добрый день
+[LOG] [2023-12-16 10:12:06.799861]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Как дела?
+[LOG] [2023-12-16 10:12:15.708810]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Как живешь
+[LOG] [2023-12-16 10:13:23.877839]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Как живешь
+[LOG] [2023-12-16 10:24:09.231137]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет
+[LOG] [2023-12-16 10:24:13.589306]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_EVENT | Payload: ['question']
+[LOG] [2023-12-16 10:25:23.370080]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_EVENT | Payload: ['question']
+[LOG] [2023-12-16 10:25:56.733981]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_EVENT | Payload: ['question']

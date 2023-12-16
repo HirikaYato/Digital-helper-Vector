@@ -13,7 +13,7 @@ from vk_api.requests_pool import VkRequestsPool,RequestResult
 
 def question(event:VkBotMessageEvent):
 
-    #Убрать костыль с проверкой на [payload]=='question'. Это было сделано для теста
+    print('Launch scenary: ', main.__name__)
 
     if event.type==VkBotEventType.MESSAGE_EVENT and event.object['payload'][0]=='question':
        
@@ -32,19 +32,25 @@ def question(event:VkBotMessageEvent):
                     'message': 'Обработка текста...'
 
                     })
-                message=events.message['text']
-                
-                if (message!=None or message!=' '):
-                    mess=events.message['text']
-                    ansewer=get_response(mess.lower())
-                    
+                if (events.message['text']!=None or events.message['text']!=' '):
 
-                    botLib.session.method('messages.send',{
+                    answer=get_response(events.message['text'])
 
-                        'user_id': events.message['from_id'],
-                        'random_id': random.randint(6,1000)+time.localtime().tm_sec,
-                        'message': ansewer[:len(ansewer)-2]
+                    if (botLib.num_check(answer)):
 
+                        botLib.session.method('messages.send',{
+
+                            'user_id': events.message['from_id'],
+                            'random_id': random.randint(7,1000)+time.localtime().tm_sec,
+                            'message': answer[:len(answer)-2]
+
+                            })
+                    else:
+                        botLib.session.method('messages.send',{
+
+                            'user_id': events.message['from_id'],
+                            'random_id': random.randint(9,1000)+time.localtime().tm_sec,
+                            'message': answer
                         })
 
     else:
@@ -53,35 +59,31 @@ def question(event:VkBotMessageEvent):
                 botLib.session.method('messages.send',{
 
                     'user_id': events.message['from_id'],
-                    'random_id': random.randint(7,1000)+time.localtime().tm_sec,
+                    'random_id': random.randint(11,1000)+time.localtime().tm_sec,
                     'message': 'Обработка текста...'
 
                     })
-                message=events.message['text']
                 
-                if (message!=None or message!=' '):
-                    mess=events.message['text']
-                    ansewer=get_response(mess.lower())
+                if (events.message['text']!=None or events.message['text']!=' '):
 
-                    botLib.session.method('messages.send',{
+                    answer=get_response(events.message['text'])
 
-                        'user_id': events.message['from_id'],
-                        'random_id': random.randint(8,1000)+time.localtime().tm_sec,
-                        'message': ansewer[:len(ansewer)-2]
+                    if (botLib.num_check(answer)):
 
+                        botLib.session.method('messages.send',{
+
+                            'user_id': events.message['from_id'],
+                            'random_id': random.randint(12,1000)+time.localtime().tm_sec,
+                            'message': answer[:len(answer)-2]
+
+                            })
+                    else:
+                        botLib.session.method('messages.send',{
+
+                            'user_id': events.message['from_id'],
+                            'random_id': random.randint(13,1000)+time.localtime().tm_sec,
+                            'message': answer
                         })
-
-
-def decree (event:VkBotMessageEvent):
-    pass
-
-
-
-def appeal (event:VkBotMessageEvent):
-    pass
-
-
-#Разобраться в inline кнопке. Возможно listen на него не работает, т.к эти работа с сообщением (а не отображение клавиатуры)
 
 
 def main():
@@ -110,19 +112,28 @@ def main():
                 'message': 'Обработка текста...'
 
                 })
-            message=event.message['text']
             
-            if (message!=None or message!=' '):
-                mess=event.message['text']
-                ansewer=get_response(mess.lower())
+            if (event.message['text']!=None or event.message['text']!=' '):
 
-                botLib.session.method('messages.send',{
+                answer=get_response(event.message['text'])
 
-                    'user_id': event.message['from_id'],
-                    'random_id': random.randint(3,1000)+time.localtime().tm_sec,
-                    'keyboard': botLib.keyboard_start.get_keyboard(),
-                    'message': ansewer[:len(ansewer)-2]
+                if (botLib.num_check(answer)):
 
+                    botLib.session.method('messages.send',{
+
+                        'user_id': event.message['from_id'],
+                        'random_id': random.randint(3,1000)+time.localtime().tm_sec,
+                        'keyboard': botLib.keyboard_start.get_keyboard(),
+                        'message': answer[:len(answer)-2]
+
+                        })
+                else:
+                    botLib.session.method('messages.send',{
+
+                        'user_id': event.message['from_id'],
+                        'random_id': random.randint(8,1000)+time.localtime().tm_sec,
+                        'keyboard': botLib.keyboard_start.get_keyboard(),
+                        'message': answer
                     })
         
 
@@ -133,24 +144,8 @@ def main():
                     'user_id':event.object['user_id'],
                     'peer_id':event.object['peer_id']
                 })
+            botLib.sPrintLog(event,True)
             question(event)
-
-        elif event.type==VkBotEventType.MESSAGE_EVENT and event.object['payload'][0]=='decree':
-            botLib.writeInFile(decree.__name__,event.object['user_id'])
-            botLib.session.method('messages.sendMessageEventAnswer',{
-                    'event_id':event.object['event_id'],
-                    'user_id':event.object['user_id'],
-                    'peer_id':event.object['peer_id']
-                })
-            decree(event)
-        elif event.type==VkBotEventType.MESSAGE_EVENT and event.object['payload'][0]=='appeal':
-            botLib.writeInFile(appeal.__name__,event.object['user_id'])
-            botLib.session.method('messages.sendMessageEventAnswer',{
-                    'event_id':event.object['event_id'],
-                    'user_id':event.object['user_id'],
-                    'peer_id':event.object['peer_id']
-                })
-            appeal(event)
 
 
         if event.type != VkBotEventType.MESSAGE_TYPING_STATE:

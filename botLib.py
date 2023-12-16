@@ -5,6 +5,7 @@ from vk_api.upload import VkUpload
 from vk_api.requests_pool import VkRequestsPool,RequestResult
 import datetime
 import json
+import re
 
 
 #Инициализация сессии бота при помощи токена
@@ -35,15 +36,25 @@ userInfo_val={
     }
 
 
+
+def num_check(string):
+    text = re.compile(r".*[0-9]$")
+    if text.match(string[-1]):
+        return True
+    else:
+        return False
+
+
+
 def getUserId(userID:int):
     """
     userID: id пользователя
     """
 
-    with open('Digital-helper-Vector\\userInfo.json','r') as file:
+    with open('userInfo.json','r') as file:
         dataUser = json.load(file)
 
-    with open('Digital-helper-Vector\\userInfo.json','r') as file:
+    with open('userInfo.json','r') as file:
         for file_user in range(0,len (dataUser['user_id'])):
             if (dataUser['user_id'][file_user]['user_id']==userID):
                 return file_user
@@ -113,10 +124,10 @@ def getUserPermission(userID:int):
     userID: id пользователя
     """
     
-    with open('Digital-helper-Vector\\userInfo.json','r') as file:
+    with open('userInfo.json','r') as file:
         dataUser = json.load(file)
 
-    with open('Digital-helper-Vector\\userInfo.json','r') as file:
+    with open('userInfo.json','r') as file:
         for file_user in range(0,len (dataUser['user_id'])):
             if (dataUser['user_id'][file_user]['user_id']==userID):
                 return dataUser['user_id'][file_user]['permission']
@@ -130,10 +141,10 @@ def getUserState(userID:int):
     userID: id пользователя
     """
 
-    with open('Digital-helper-Vector\\userInfo.json','r') as file:
+    with open('userInfo.json','r') as file:
         dataUser = json.load(file)
 
-    with open('Digital-helper-Vector\\userInfo.json','r') as file:
+    with open('userInfo.json','r') as file:
         for file_user in range(0,len (dataUser['user_id'])):
             if (dataUser['user_id'][file_user]['user_id']==userID):
                 return dataUser['user_id'][file_user]['state']
@@ -148,7 +159,7 @@ def setUserPermission(userID:int,permission:str):
     state: название сценария, в котором вы находитесь
     """
     
-    with open('Digital-helper-Vector\\userInfo.json','r') as file:
+    with open('userInfo.json','r') as file:
         dataUser = json.load(file)
 
     with open('userInfo.json','r') as file:
@@ -156,7 +167,7 @@ def setUserPermission(userID:int,permission:str):
             if (dataUser['user_id'][file_user]['user_id']==userID):
                 dataUser['user_id'][file_user]['permission']=permission
     
-    with open ('Digital-helper-Vector\\userInfo.json','w') as file:
+    with open ('userInfo.json','w') as file:
         file.write(json.dumps(dataUser))
         print(f'[LOG] [{datetime.datetime.now()}] User: {userID} was change permission on [{permission}]')
 
@@ -170,7 +181,7 @@ def writeInFile(state:str,userID:int):
     state: название сценария, в котором вы находитесь
     """
 
-    with open('Digital-helper-Vector\\userInfo.json','r') as file:
+    with open('userInfo.json','r') as file:
         dataUser = json.load(file)
         
     if userID==170852963:
@@ -187,7 +198,7 @@ def writeInFile(state:str,userID:int):
         user['ban']=False
         user['permission']='user'
 
-    with open('Digital-helper-Vector\\userInfo.json','w') as file:
+    with open('userInfo.json','w') as file:
         for file_user in range(0,len (dataUser['user_id'])):
             if (dataUser['user_id'][file_user]['user_id']==userID):
                 dataUser['user_id'][file_user]=user
@@ -217,15 +228,15 @@ def writeInFile_start(user_id,peer_id,permission):
         user['ban']=False
         user['permission']=permission
 
-    with open('Digital-helper-Vector\\userInfo.json','w') as file:
+    with open('userInfo.json','w') as file:
         file.write(json.dumps(userInfo_val))
 
 
-    with open('Digital-helper-Vector\\userInfo.json','r') as file:
+    with open('userInfo.json','r') as file:
         dataUser = json.load(file)
     
     dataUser['user_id'].append(user)
-    with open('Digital-helper-Vector\\userInfo.json','w+') as file:
+    with open('userInfo.json','w+') as file:
         file.write(json.dumps(dataUser))
 
 
@@ -245,7 +256,7 @@ def sPrintLog(event:VkBotMessageEvent, save:bool):
     if (long['messages']['count']>0):
         pass
 
-    with open('Digital-helper-Vector\\userInfo.json','r') as file:
+    with open('userInfo.json','r') as file:
         dataUser_r = json.load(file)
 
 
@@ -263,7 +274,7 @@ def sPrintLog(event:VkBotMessageEvent, save:bool):
         print(f'[LOG] [{datetime.datetime.now()}]: UserID: {event.object["user_id"]} | Scenary: {dataUser_r["user_id"][userIndex]["state"]} | Event: {event.type} | Payload: {event.object["payload"]}')
 
     if (save):
-        with open('Digital-helper-Vector\\BotLog.txt','a',encoding='utf-8') as file:
+        with open('BotLog.txt','a',encoding='utf-8') as file:
             if event.type==VkBotEventType.MESSAGE_NEW:
                 file.writelines(f'[LOG] [{datetime.datetime.now()}]: UserID: {event.message["from_id"]} | Scenary: {dataUser_r["user_id"][userIndex]["state"]} | Event: {event.type} | Text: {event.message["text"]}\n')
             elif event.type==VkBotEventType.MESSAGE_EVENT:
