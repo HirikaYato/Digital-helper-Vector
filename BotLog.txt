@@ -64,3 +64,9 @@
 [LOG] [2023-12-16 10:24:13.589306]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_EVENT | Payload: ['question']
 [LOG] [2023-12-16 10:25:23.370080]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_EVENT | Payload: ['question']
 [LOG] [2023-12-16 10:25:56.733981]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_EVENT | Payload: ['question']
+[LOG] [2023-12-16 12:03:34.791214]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет
+[LOG] [2023-12-16 12:03:39.230904]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_EVENT | Payload: ['question']
+[LOG] [2023-12-16 12:15:40.490639]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Хай
+[LOG] [2023-12-16 12:15:44.969545]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_EVENT | Payload: ['question']
+[LOG] [2023-12-16 12:16:21.234539]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет
+[LOG] [2023-12-16 12:16:25.644569]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_EVENT | Payload: ['question']
