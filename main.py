@@ -54,7 +54,7 @@ def get_response(input_string):
 
     # If there is no good response, return a random one.
     if best_response != 0:
-        return response_data[response_index]["bot_response"]
+        return response_data[response_index]
 
     return random_responses.random_string()
 

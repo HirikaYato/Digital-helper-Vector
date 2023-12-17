@@ -284,6 +284,8 @@ def sPrintLog(event:VkBotMessageEvent, save:bool):
 
 #Объект клавиатуры, сценария "Старт"
 keyboard_start=VkKeyboard(inline=True) #Callback_button - для перехода между сценариями; usual_button - для взаимодействия внутри данного сценария
+#Объект клавиатуры, сценарий "Вопросы"
+keyboard_question=VkKeyboard(inline=True)
 #Объект для составления и обработки запросов
 request_pool_api=VkRequestsPool(session)
 #Объект, характеризующий результат запроса
@@ -296,4 +298,4 @@ keyboard_start.add_callback_button('Задать вопрос',VkKeyboardColor.S
 keyboard_start.add_line()
 keyboard_start.add_openlink_button('Просмотреть указы','https://www.xn----7sbab7amcgekn3b5j.xn--p1ai/administratsiya-mo/postanovleniya-i-rasporyazheniya-glavy-mr/',['decree'])
 
-
+keyboard_question.add_callback_button('Назад',VkKeyboardColor.NEGATIVE,['back'])

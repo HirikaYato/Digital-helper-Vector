@@ -2,9 +2,10 @@
 
 import json
 
-uinput='Вопрос'
-bresponse="""Желаемый ответ"""
+uinput='Ваш вопрос'
+bresponse="""Желаемый ответ бота"""
 
+#Шаблон для заполнения
 q={
     "response_type": "question",
     "user_input": [],
@@ -12,6 +13,7 @@ q={
     "required_words": []
   }
 
+#Чтение файла, добавление нового словаря
 with open ('bot.json','r',encoding='utf-8') as bot:
     data=json.load(bot)
 
@@ -22,6 +24,6 @@ q['bot_response']=bresponse
 data.append(q)
 
 
-
+#Перезапись исходника (с добавлением новых данных)
 with open ('bot.json','w',encoding='utf-8') as bot:
     bot.write(json.dumps(data,ensure_ascii=False,indent=2))

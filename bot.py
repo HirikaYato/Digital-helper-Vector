@@ -5,54 +5,62 @@ import time
 import botLib
 import requests
 from main import get_response
+import random_responses
 
 from vk_api.bot_longpoll import VkBotEventType,VkBotLongPoll,VkBotMessageEvent,VkBotEvent
 from vk_api.requests_pool import VkRequestsPool,RequestResult
 
 
-
+#Фунцкия для обработки вопросов
 def question(event:VkBotMessageEvent):
 
     print('Launch scenary: ', main.__name__)
 
+    #Обработка нажатия кнопки
     if event.type==VkBotEventType.MESSAGE_EVENT and event.object['payload'][0]=='question':
        
         botLib.session.method('messages.send',{
                     'user_id': event.object['user_id'],
                     'random_id': random.randint(4,1000)+time.localtime().tm_sec,
+                    'keyboard': botLib.keyboard_question.get_keyboard(),
                     'message': 'Задайте интересующий вас вопрос и я постараюсь на него ответить'
                     })
         
+        #Прослушаивание и обработка событий с сервера
         for events in botLib.bot_longpoll.listen():
             if events.type==VkBotEventType.MESSAGE_NEW and events.from_user:
                 botLib.session.method('messages.send',{
 
                     'user_id': events.message['from_id'],
                     'random_id': random.randint(5,1000)+time.localtime().tm_sec,
-                    'message': 'Обработка текста...'
+                    'message': 'Обработка запроса'
 
                     })
                 if (events.message['text']!=None or events.message['text']!=' '):
-
+                    
+                    #Генерация ответа от бота
                     answer=get_response(events.message['text'])
 
-                    if (botLib.num_check(answer)):
+                    if type(answer) !=str and answer['response_type']=='question':
 
-                        botLib.session.method('messages.send',{
+                            botLib.session.method('messages.send',{
 
-                            'user_id': events.message['from_id'],
-                            'random_id': random.randint(7,1000)+time.localtime().tm_sec,
-                            'message': answer[:len(answer)-2]
+                                'user_id': events.message['from_id'],
+                                'random_id': random.randint(7,1000)+time.localtime().tm_sec,
+                                'keyboard': botLib.keyboard_question.get_keyboard(),
+                                'message': answer['bot_response'][:len(answer['bot_response'])-2]
 
-                            })
+                                })
+
                     else:
                         botLib.session.method('messages.send',{
 
                             'user_id': events.message['from_id'],
+                            'keyboard': botLib.keyboard_question.get_keyboard(),
                             'random_id': random.randint(9,1000)+time.localtime().tm_sec,
                             'message': answer
                         })
-
+    #Проверка, с случае перезапуска бота
     else:
         for events in botLib.bot_longpoll.listen():
             if events.type==VkBotEventType.MESSAGE_NEW and events.from_user:
@@ -60,28 +68,32 @@ def question(event:VkBotMessageEvent):
 
                     'user_id': events.message['from_id'],
                     'random_id': random.randint(11,1000)+time.localtime().tm_sec,
-                    'message': 'Обработка текста...'
+                    'message': 'Обработка запроса'
 
                     })
                 
                 if (events.message['text']!=None or events.message['text']!=' '):
 
+                    #Генерация ответа от бота
                     answer=get_response(events.message['text'])
 
-                    if (botLib.num_check(answer)):
+                    if type(answer) !=str and answer['response_type']=='question':
 
-                        botLib.session.method('messages.send',{
+                            botLib.session.method('messages.send',{
 
-                            'user_id': events.message['from_id'],
-                            'random_id': random.randint(12,1000)+time.localtime().tm_sec,
-                            'message': answer[:len(answer)-2]
+                                'user_id': events.message['from_id'],
+                                'random_id': random.randint(12,1000)+time.localtime().tm_sec,
+                                'keyboard': botLib.keyboard_question.get_keyboard(),
+                                'message': answer['bot_response'][:len(answer['bot_response'])-2]
 
-                            })
+                                })
+
                     else:
                         botLib.session.method('messages.send',{
 
                             'user_id': events.message['from_id'],
                             'random_id': random.randint(13,1000)+time.localtime().tm_sec,
+                            'keyboard': botLib.keyboard_question.get_keyboard(),
                             'message': answer
                         })
 
@@ -91,6 +103,7 @@ def main():
 
     print('Launch scenary: ', main.__name__)
 
+    #Прослушаивание и обработка событий с сервера
     for event in botLib.bot_longpoll.listen():
         
         if event.type==VkBotEventType.MESSAGE_NEW and event.from_user and event.message['text']=='Начать':
@@ -103,40 +116,44 @@ def main():
                 'message': 'Привет!) Это команда [Vector]. Сейчас у нас идет тестирование кейса [Хакатон: Лидеры Цифровой трансформации].\nЕсли вы хотите повзаимодействовать с ботом по этому кейсу, то можете отправить ему любое приветственное слово.'
 
                 })  
-                
+        
+        #Обработка основных сообщений для бота
         elif event.type==VkBotEventType.MESSAGE_NEW and event.from_user:
             botLib.session.method('messages.send',{
 
                 'user_id': event.message['from_id'],
                 'random_id': random.randint(2,1000)+time.localtime().tm_sec,
-                'message': 'Обработка текста...'
+                'message': 'Обработка запроса'
 
                 })
             
             if (event.message['text']!=None or event.message['text']!=' '):
-
+                
+                #Генерация ответа от бота
                 answer=get_response(event.message['text'])
 
-                if (botLib.num_check(answer)):
+                #Отправка ответа ботом
+                if type(answer) !=str and answer['response_type']=='greeting':
+                        
+                        botLib.session.method('messages.send',{
 
-                    botLib.session.method('messages.send',{
+                            'user_id': event.message['from_id'],
+                            'random_id': random.randint(3,1000)+time.localtime().tm_sec,
+                            'keyboard': botLib.keyboard_start.get_keyboard(),
+                            'message': answer['bot_response'][:len(answer['bot_response'])-2]
 
-                        'user_id': event.message['from_id'],
-                        'random_id': random.randint(3,1000)+time.localtime().tm_sec,
-                        'keyboard': botLib.keyboard_start.get_keyboard(),
-                        'message': answer[:len(answer)-2]
+                            })
 
-                        })
                 else:
                     botLib.session.method('messages.send',{
 
                         'user_id': event.message['from_id'],
                         'random_id': random.randint(8,1000)+time.localtime().tm_sec,
-                        'keyboard': botLib.keyboard_start.get_keyboard(),
-                        'message': answer
+                        'message': random_responses.random_string()
                     })
-        
 
+        
+        #Обработка нажатия inline кнопки
         elif event.type==VkBotEventType.MESSAGE_EVENT and event.object['payload'][0]=='question':
             botLib.writeInFile(question.__name__,event.object['user_id'])
             botLib.session.method('messages.sendMessageEventAnswer',{
@@ -148,6 +165,23 @@ def main():
             question(event)
 
 
+        elif event.type==VkBotEventType.MESSAGE_EVENT and event.object['payload'][0]=='back':
+            botLib.writeInFile(question.__name__,event.object['user_id'])
+            botLib.session.method('messages.sendMessageEventAnswer',{
+                    'event_id':event.object['event_id'],
+                    'user_id':event.object['user_id'],
+                    'peer_id':event.object['peer_id'],
+                    'event_data':json.dumps( botLib.session.method('messages.send',{
+
+                        'user_id': event.object['user_id'],
+                        'random_id': random.randint(13,1000)+time.localtime().tm_sec,
+                        'keyboard': botLib.keyboard_start.get_keyboard(),
+                        'message': 'Приветствую вас!\nЧто вы желаете выполнить?'
+                    }))
+                })
+            botLib.sPrintLog(event,True)
+
+        #Вывод и запись логов
         if event.type != VkBotEventType.MESSAGE_TYPING_STATE:
             botLib.sPrintLog(event,True)
 
