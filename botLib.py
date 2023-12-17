@@ -39,7 +39,7 @@ userInfo_val={
     }
 
 
-
+#Проверить сообщение на категорию question
 def num_check(string):
     text = re.compile(r".*[0-9]$")
     if text.match(string[-1]):
@@ -48,7 +48,7 @@ def num_check(string):
         return False
 
 
-
+#Получить id 
 def getUserId(userID:int):
     """
     userID: id пользователя
@@ -63,7 +63,7 @@ def getUserId(userID:int):
                 return file_user
             
 
-
+#Забанить пользователя
 def banUser(userID:int):
     """
     userID: id пользователя
@@ -82,7 +82,7 @@ def banUser(userID:int):
         print(f'[LOG] [{datetime.datetime.now()}] User: {userID} was ban')
 
 
-
+#Разабанить пользователя
 def unBanUser(userID:int):
     """
     userID: id пользователя
@@ -101,7 +101,7 @@ def unBanUser(userID:int):
         print(f'[LOG] [{datetime.datetime.now()}] User: {userID} was unban')
 
 
-
+#Проверить пользователя на бан
 def checkUserOnBan(userID:int):
     """
     userID: id пользователя
@@ -119,7 +119,7 @@ def checkUserOnBan(userID:int):
                     return False
             
 
-
+#Получить права пользователя
 def getUserPermission(userID:int):
     """
     Получить статус прав пользователя
@@ -136,7 +136,7 @@ def getUserPermission(userID:int):
                 return dataUser['user_id'][file_user]['permission']
             
 
-
+#Ф-ция для получения сценария, в котором сейчас находится пользователь
 def getUserState(userID:int):
     """
     Получить стутус нахождения в сценарии
@@ -153,7 +153,7 @@ def getUserState(userID:int):
                 return dataUser['user_id'][file_user]['state']
 
 
-
+#Ф-ция для изменения прав пользователя
 def setUserPermission(userID:int,permission:str):
     """
     Назначить права пользователю
@@ -175,7 +175,7 @@ def setUserPermission(userID:int,permission:str):
         print(f'[LOG] [{datetime.datetime.now()}] User: {userID} was change permission on [{permission}]')
 
 
-
+#Ф-ция для вставки ссылки на документ в ответ бота
 def attachUrl(url:str):
     url=url
 
@@ -187,7 +187,7 @@ def attachUrl(url:str):
             return data[str[i]]
 
 
-
+#Изменить стутус сценария пользователя
 def writeInFile(state:str,userID:int):
     """
     Изменение информации о пользователе
@@ -223,7 +223,7 @@ def writeInFile(state:str,userID:int):
         file.write(json.dumps(dataUser))
 
 
-
+#Первичное внесение пользователя
 def writeInFile_start(user_id,peer_id,permission):
     """
     permission: уровень доступа (права) пользователя
@@ -255,7 +255,7 @@ def writeInFile_start(user_id,peer_id,permission):
         file.write(json.dumps(dataUser))
 
 
-
+#Вывод и запись логов
 def sPrintLog(event:VkBotMessageEvent, save:bool):
     """
     Ведение логов с возможность записи их в файл
