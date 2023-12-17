@@ -1,6 +1,8 @@
 import json
 import re
 import random_responses
+from bs4 import BeautifulSoup
+import requests
 
 
 # Load JSON data
@@ -12,6 +14,8 @@ def load_json(file):
 
 # Store JSON data
 response_data = load_json("bot.json")
+#Store url
+dic={'0':'/administratsiya-mo/postanovleniya-i-rasporyazheniya-glavy-mr/24719/'}
 
 
 def get_response(input_string):
@@ -58,7 +62,25 @@ def get_response(input_string):
 
     return random_responses.random_string()
 
+#Function for updating ref.json in case of adding new documentation.
+def writeRefInFile():
+    url='https://www.xn----7sbab7amcgekn3b5j.xn--p1ai/administratsiya-mo/postanovleniya-i-rasporyazheniya-glavy-mr/'
 
-# while True:
-#     user_input = input("You: ")
-#     print("Bot:", get_response(user_input))
+    key=0
+
+    r=requests.get(url)
+    ba=BeautifulSoup(r.content,"html.parser")
+    main=ba.find('div','postanovlenie')
+    
+    with open('ref.json','r') as file:
+            data=json.load(file)
+
+    for ref in main.find_all('a'):
+            name = ref['href']
+            dic[str(key)]=f'https://www.xn----7sbab7amcgekn3b5j.xn--p1ai{name}'
+            key+=1
+
+    data=dic
+
+    with open('ref.json','w') as file:
+            file.write(json.dumps(data,indent=1))

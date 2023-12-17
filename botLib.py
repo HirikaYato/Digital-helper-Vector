@@ -173,6 +173,18 @@ def setUserPermission(userID:int,permission:str):
 
 
 
+def attachUrl(url:str):
+    url=url
+
+    with open('ref.json','r') as file:
+            data=json.load(file)
+    
+    for i in range(len(data)):
+        if (data[str[i]==url]):
+            return data[str[i]]
+
+
+
 def writeInFile(state:str,userID:int):
     """
     Изменение информации о пользователе
