@@ -137,3 +137,8 @@
 [LOG] [2023-12-17 17:31:38.397936]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Как узнавать какие соревнования заложены на год, а то по факту приходишь, а денег уже нет, ушли на другие нужды.
 [LOG] [2023-12-17 17:31:44.742020]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет
 [LOG] [2023-12-17 17:31:52.552692]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_EVENT | Payload: ['question']
+[LOG] [2023-12-17 20:24:14.525914]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Хоба
+[LOG] [2023-12-17 20:24:19.116030]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Начать
+[LOG] [2023-12-17 20:25:06.559643]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Начать
+[LOG] [2023-12-17 20:25:12.028001]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_NEW | Text: Привет
+[LOG] [2023-12-17 20:25:16.786931]: UserID: 170852963 | Scenary: start | Event: VkBotEventType.MESSAGE_EVENT | Payload: ['question']

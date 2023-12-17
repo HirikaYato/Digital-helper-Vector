@@ -3,13 +3,16 @@ from vk_api.bot_longpoll import VkBotEventType,VkBotLongPoll,VkBotMessageEvent,V
 from vk_api.keyboard import VkKeyboard,VkKeyboardButton,VkKeyboardColor
 from vk_api.upload import VkUpload
 from vk_api.requests_pool import VkRequestsPool,RequestResult
+from dotenv import load_dotenv
 import datetime
 import json
 import re
+import os
 
 
+load_dotenv()
 #Инициализация сессии бота при помощи токена
-session=vk_api.VkApi(token='vk1.a.imTYRsYzGEhvlt-qnNCAONaLGobJibG2aL1v7GqUmsprrm1nNLQFrsYl17jnCNLAWVAIX1UBNf5HVV7IVaWKgXBt9IpSzoua7p1yku-LNMHoy7FHWKJUKxX6FqLlhi6sEda7wHSqTae0Lkf9qgKp68jBYE-YFDdfT8uprtOADnI2FqEV7jDtVyf9kiqLYdSQQu7NHOoG_OIixuczP3g6dQ')
+session=vk_api.VkApi(token=os.getenv('BOT_TOKEN'))
 #Создание объекта, для обработки событий от сервера
 bot_longpoll=VkBotLongPoll(session,'223836799',10)
 
