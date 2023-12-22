@@ -14,7 +14,7 @@ from vk_api.requests_pool import VkRequestsPool,RequestResult
 #Фунцкия для обработки вопросов
 def question(event:VkBotMessageEvent):
 
-    print('Launch scenary: ', main.__name__)
+    print('Launch scenary: ', question.__name__)
 
     #Обработка нажатия кнопки
     if event.type==VkBotEventType.MESSAGE_EVENT and event.object['payload'][0]=='question':
@@ -46,6 +46,16 @@ def question(event:VkBotMessageEvent):
                             botLib.session.method('messages.send',{
 
                                 'user_id': events.message['from_id'],
+                                'random_id': random.randint(12,1000)+time.localtime().tm_sec,
+                                'keyboard': botLib.keyboard_question.get_keyboard(),
+                                'message': answer['bot_response'][:len(answer['bot_response'])-2]
+
+                                })
+
+                    elif type(answer) !=str and answer['response_type']=='Bye':
+                        botLib.session.method('messages.send',{
+
+                                'user_id': events.message['from_id'],
                                 'random_id': random.randint(7,1000)+time.localtime().tm_sec,
                                 'keyboard': botLib.keyboard_question.get_keyboard(),
                                 'message': answer['bot_response'][:len(answer['bot_response'])-2]
@@ -60,7 +70,25 @@ def question(event:VkBotMessageEvent):
                             'random_id': random.randint(9,1000)+time.localtime().tm_sec,
                             'message': answer
                         })
-    #Проверка, с случае перезапуска бота
+
+            elif events.type==VkBotEventType.MESSAGE_EVENT and events.object['payload'][0]=='back':
+                botLib.writeInFile(main.__name__,events.object['user_id'])
+                botLib.session.method('messages.sendMessageEventAnswer',{
+                        'event_id':events.object['event_id'],
+                        'user_id':events.object['user_id'],
+                        'peer_id':events.object['peer_id'],
+                        'event_data':json.dumps( botLib.session.method('messages.send',{
+
+                            'user_id': events.object['user_id'],
+                            'random_id': random.randint(50,1000)+time.localtime().tm_sec,
+                            'keyboard': botLib.keyboard_start.get_keyboard(),
+                            'message': 'Приветствую вас!\nЧто вы желаете выполнить?'
+                        }))
+                    })
+            if event.type != VkBotEventType.MESSAGE_TYPING_STATE:
+                botLib.sPrintLog(events,True)
+
+    #Проверка, в случае перезапуска бота
     else:
         for events in botLib.bot_longpoll.listen():
             if events.type==VkBotEventType.MESSAGE_NEW and events.from_user:
@@ -82,7 +110,17 @@ def question(event:VkBotMessageEvent):
                             botLib.session.method('messages.send',{
 
                                 'user_id': events.message['from_id'],
-                                'random_id': random.randint(12,1000)+time.localtime().tm_sec,
+                                'random_id': random.randint(18,1000)+time.localtime().tm_sec,
+                                'keyboard': botLib.keyboard_question.get_keyboard(),
+                                'message': answer['bot_response'][:len(answer['bot_response'])-2]
+
+                                })
+                            
+                    elif type(answer) !=str and answer['response_type']=='Bye':
+                        botLib.session.method('messages.send',{
+
+                                'user_id': events.message['from_id'],
+                                'random_id': random.randint(24,1000)+time.localtime().tm_sec,
                                 'keyboard': botLib.keyboard_question.get_keyboard(),
                                 'message': answer['bot_response'][:len(answer['bot_response'])-2]
 
@@ -96,6 +134,23 @@ def question(event:VkBotMessageEvent):
                             'keyboard': botLib.keyboard_question.get_keyboard(),
                             'message': answer
                         })
+                        
+            elif events.type==VkBotEventType.MESSAGE_EVENT and events.object['payload'][0]=='back':
+                botLib.writeInFile(question.__name__,events.object['user_id'])
+                botLib.session.method('messages.sendMessageEventAnswer',{
+                        'event_id':events.object['event_id'],
+                        'user_id':events.object['user_id'],
+                        'peer_id':events.object['peer_id'],
+                        'event_data':json.dumps( botLib.session.method('messages.send',{
+
+                            'user_id': events.object['user_id'],
+                            'random_id': random.randint(50,1000)+time.localtime().tm_sec,
+                            'keyboard': botLib.keyboard_start.get_keyboard(),
+                            'message': 'Приветствую вас!\nЧто вы желаете выполнить?'
+                        }))
+                    })
+            if event.type != VkBotEventType.MESSAGE_TYPING_STATE:
+                botLib.sPrintLog(events,True)
 
 
 def main():
@@ -133,16 +188,25 @@ def main():
                 answer=get_response(event.message['text'])
 
                 #Отправка ответа ботом
-                if type(answer) !=str and answer['response_type']=='greeting':
+                if event.message['text'].lower() in ["привет","хей","хай","доброе утро","добрый день","добрый вечер",]:
                         
                         botLib.session.method('messages.send',{
 
                             'user_id': event.message['from_id'],
                             'random_id': random.randint(3,1000)+time.localtime().tm_sec,
                             'keyboard': botLib.keyboard_start.get_keyboard(),
-                            'message': answer['bot_response'][:len(answer['bot_response'])-2]
+                            'message': "Приветствую вас!\nЧто вы желаете выполнить?"
 
                             })
+                        
+                elif type(answer) !=str and answer['response_type']=='Bye':
+                        botLib.session.method('messages.send',{
+
+                                'user_id': event.message['from_id'],
+                                'random_id': random.randint(7,1000)+time.localtime().tm_sec,
+                                'message': answer['bot_response'][:len(answer['bot_response'])-2]
+
+                                })
 
                 else:
                     botLib.session.method('messages.send',{
